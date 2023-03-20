@@ -238,19 +238,28 @@ class GrafoND:
     def removeVertice(self, v):
         for j in range(0,self.n-1):
             for i in range(0,self.n-1):
-                if (i >= v) and (i < (self.n-1)):
+                if (i < v):
+                    if j < v:
+                        continue
+                    else:
+                        if (j < n-1):
+                            self.adj[j][i] = self.adj[j+1][i]
+                        else
+                            self.adj[j][i] = 0
+                 else:
                     if j < v:
                         self.adj[j][i] = self.adj[j][i+1]
-                    elif j < (self.n-1):
-                        self.adj[j][i] = self.adj[j+1][i+1]
                     else:
-                        self.adj[j][i] = 0
-                elif (i < v) and (j > v):
-                    self.adj[j][i] = self.adj[j+1][i]
-                elif j == v:
-                    self.adj[j][i] = self.adj[j+1][i + 2]
-        print(f"\nRemovido o vertice {v}")
-        self.n -= 1
+                        if (j < n-1):
+                            if (i < n-1):
+                                self.adj[j][i] = self.adj[j+1][i+1]
+                            else
+                                self.adj[j][i] = 0    
+                        else
+                            self.adj[j][i] = 0
+                   
+            print(f"\nRemovido o vertice {v}")
+            self.n -= 1
 
     def completo(self):
         for i in range(self.n):
